@@ -10,7 +10,7 @@ router = routing.Router()
 async def issue_opened_event(event, gh, *args, **kwargs):
     """ Whenever an issue is opened, greet the author and say thanks."""
     pass
-    
+
 async def main(request):
     # read the GitHub webhook payload
     body = await request.read()
@@ -32,3 +32,12 @@ async def main(request):
 
     # return a "Success"
     return web.Response(status=200)
+
+if __name__ == "__main__":
+    app = web.Application()
+    app.router.add_post("/", main)
+    port = os.environ.get("PORT")
+    if port is not None:
+        port = int(port)
+
+    web.run_app(app, port=port)
