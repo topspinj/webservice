@@ -14,7 +14,7 @@ async def issue_opened_event(event, gh, *args, **kwargs):
     """
     url = event.data["issue"]["comments_url"]
     author = event.data["issue"]["user"]["login"]
-    message = f"Thanks for the report @{author}!."
+    message = f"Thanks for the report @{author}! Will look into it ASAP."
     await gh.post(url, data={"body": message})
 
 async def main(request):
